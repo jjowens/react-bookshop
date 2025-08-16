@@ -33,7 +33,8 @@ export function Layout({ children }: { children: React.ReactNode }) {
         <Links />
       </head>
       <body>
-        {children}
+        <div><h1 style={{fontSize: 32}}>React Bookshop</h1></div>
+          {children}
         <ScrollRestoration />
         <Scripts />
       </body>

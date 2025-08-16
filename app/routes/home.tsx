@@ -1,13 +1,15 @@
+import { ShopFront } from "~/shopfront/shopfront";
 import type { Route } from "./+types/home";
-import { Welcome } from "../welcome/welcome";
 
 export function meta({}: Route.MetaArgs) {
+  const title = "React Bookshop";
+
   return [
-    { title: "New React Router App" },
-    { name: "description", content: "Welcome to React Router!" },
+    { title: title},
+    { name: "description", content: "Welcome to " + title + "!" },
   ];
 }
 
 export default function Home() {
-  return <Welcome />;
+  return <ShopFront />
 }
