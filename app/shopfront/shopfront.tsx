@@ -1,87 +1,41 @@
+import { useState, useEffect } from "react";
 import { BookComponent } from "~/shared/components/book-component/bookcomponent";
+import { BookService } from "~/shared/services/bookservice"
 
 export function ShopFront() {
+  const service = BookService();
+  //const data = service.searchBooks();
+  const [isLoading, setIsLoading] = useState(false);
+  const [data, setData] = useState<any[]>([]);
+
+  const searchbooks = async () => {
+    setIsLoading(true);
+
+    const results = await service.searchBooks();
+
+    setData(results);
+
+    setIsLoading(false);
+  };
+
+  useEffect(() => {
+    searchbooks();
+  }, data)
+
+
   return (
     <main>
        <div><h2>Books Catalog</h2></div>
        <div className="container m-auto grid grid-cols-4 gap-4">
-        <div>
-              <BookComponent book={{ bookid: 1, title: 'The Stand', genre:'Horror', 
-                  author: [{authorid: 1, 
-                  firstname: 'Stephen', 
-                  lastname: 'King'}] }} >
+        { isLoading ? <p>Loading</p> :<></>}
+      { (data && !isLoading) ?
+            data.map((item, index) => 
+            <div>
+              <BookComponent key={ item["bookID"] } 
+                    book={{ bookID: item["bookID"], title: item["title"], genre: item["genre"], 
+                  authors: item["authors"] }} >
               </BookComponent>
-          </div>
-          <div>
-              <BookComponent book={{ bookid: 2, title: 'Rolling Heads', genre:'Horror', 
-                      author: [{authorid: 1, 
-                      firstname: 'Josh', 
-                      lastname: 'Winning'}] }} >
-              </BookComponent>
-          </div>
-          <div>
-              <BookComponent book={{ bookid: 3, title: 'The Last Seance', genre:'Supernautral', 
-                      author: [{authorid: 1, 
-                      firstname: 'Agatha', 
-                      lastname: 'Christie'}] }} >
-              </BookComponent>
-          </div>
-          <div>
-              <BookComponent book={{ bookid: 1, title: 'The Stand', genre:'Horror', 
-                  author: [{authorid: 1, 
-                  firstname: 'Stephen', 
-                  lastname: 'King'}] }} >
-              </BookComponent>
-          </div>
-          <div>
-              <BookComponent book={{ bookid: 2, title: 'Rolling Heads', genre:'Horror', 
-                      author: [{authorid: 1, 
-                      firstname: 'Josh', 
-                      lastname: 'Winning'}] }} >
-              </BookComponent>
-          </div>
-          <div>
-              <BookComponent book={{ bookid: 3, title: 'The Last Seance', genre:'Supernautral', 
-                      author: [{authorid: 1, 
-                      firstname: 'Agatha', 
-                      lastname: 'Christie'}] }} >
-              </BookComponent>
-          </div>
-          <div>
-              <BookComponent book={{ bookid: 1, title: 'The Stand', genre:'Horror', 
-                  author: [{authorid: 1, 
-                  firstname: 'Stephen', 
-                  lastname: 'King'}] }} >
-              </BookComponent>
-          </div>
-          <div>
-              <BookComponent book={{ bookid: 2, title: 'Rolling Heads', genre:'Horror', 
-                      author: [{authorid: 1, 
-                      firstname: 'Josh', 
-                      lastname: 'Winning'}] }} >
-              </BookComponent>
-          </div>
-          <div>
-              <BookComponent book={{ bookid: 3, title: 'The Last Seance', genre:'Supernautral', 
-                      author: [{authorid: 1, 
-                      firstname: 'Agatha', 
-                      lastname: 'Christie'}] }} >
-              </BookComponent>
-          </div>
-          <div>
-              <BookComponent book={{ bookid: 1, title: 'The Stand', genre:'Horror', 
-                  author: [{authorid: 1, 
-                  firstname: 'Stephen', 
-                  lastname: 'King'}] }} >
-              </BookComponent>
-          </div>
-          <div>
-              <BookComponent book={{ bookid: 2, title: 'Rolling Heads', genre:'Horror', 
-                      author: [{authorid: 1, 
-                      firstname: 'Josh', 
-                      lastname: 'Winning'}] }} >
-              </BookComponent>
-          </div>
+            </div>) : <></> }
        </div>
        
     </main>

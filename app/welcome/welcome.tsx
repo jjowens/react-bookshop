@@ -42,7 +42,7 @@ export function Welcome() {
             </ul>
             <h2>New Component</h2>
             <BookComponent book={{ bookid: 1, title: 'The Stand', genre:'Horror', 
-                                  author: [{authorid: 1, 
+                                  authors: [{authorid: 1, 
                                   firstname: 'Stephen', 
                                   lastname: 'King'}] }} >
                                     <p>On Sale: 50% off!</p>

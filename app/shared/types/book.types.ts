@@ -1,9 +1,9 @@
 import { type AuthorType } from "./author.types"
 
 export type BookType = {
-    bookid: number,
+    bookID: number,
     title?: string,
     genre?: string,
-    author?: [AuthorType],
+    authors?: [AuthorType],
     bookthumbnail?: string
 }
