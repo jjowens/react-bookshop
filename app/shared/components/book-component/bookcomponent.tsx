@@ -6,11 +6,12 @@ interface BookProps {
 }
 
 export const BookComponent: React.FC<BookProps> = ({children, book}) => {
+    console.log("My Authors: {0}", book.authors);
 
     return (<div>
                 <p>{book.title}</p>
-                { (book.author) ? 
-                    <p>{book.author[0].firstname} {book.author[0].lastname}</p>
+                { (book.authors) ? 
+                    <p>{book.authors[0].firstname} {book.authors[0].lastname}</p>
                     : <></>
                 }
                 <p>{book.genre}</p>
