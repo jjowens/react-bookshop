@@ -11,7 +11,7 @@ export const BookComponent: React.FC<BookProps> = ({children, book}) => {
     return (<div>
                 <p>{book.title}</p>
                 { (book.authors) ? 
-                    <p>{book.authors[0].firstname} {book.authors[0].lastname}</p>
+                    <p>{book.authors.map((item) => item.firstname + " " + item.lastname + " ")}</p>
                     : <></>
                 }
                 <p>{book.genre}</p>
