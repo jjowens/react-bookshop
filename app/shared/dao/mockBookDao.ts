@@ -16,6 +16,25 @@ export const getAllBooks = () => {
     return data;
 } 
 
-export const searchBooks = (wildcard?: boolean, title?:string, author?:string, genre?:string) => {
-    return data;
+export const searchBooks = (title?:string, author?:string, genre?:string) => {
+    let filteredBooks = data;
+
+    if (title) {
+        const titleLower = title.toLowerCase().trim();
+        filteredBooks = filteredBooks.filter(book => book.title.toLowerCase().includes(titleLower));
+    }
+    
+    if (genre) {
+        const genreLower = genre.toLowerCase().trim();
+        filteredBooks = filteredBooks.filter(book => book.genre.toLowerCase().includes(genreLower));
+    }    
+    
+    if (author) {
+        const authorLower = author.toLowerCase().trim();
+        filteredBooks = filteredBooks.filter(book => 
+            book.authors.some(a => `${a.firstname.toLowerCase()} ${a.lastname.toLowerCase()}`.includes(authorLower))
+        );
+    }
+
+    return filteredBooks;
 } 
