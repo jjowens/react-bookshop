@@ -25,19 +25,21 @@ export function ShopFront() {
 
   return (
     <main>
-       <div><h2>Books Catalog</h2></div>
-       <div className="container m-auto grid grid-cols-4 gap-4">
-        { isLoading ? <p>Loading</p> :<></>}
-      { (data && !isLoading) ?
-            data.map((item, index) => 
+      <div><h2>Books Catalog</h2></div>
+      <div className="container m-auto grid grid-cols-4 gap-4">
+        {isLoading ? <p>Loading</p> : <></>}
+        {(data && !isLoading) ?
+          data.map((item, index) =>
             <div>
-              <BookComponent key={ item["bookID"] } 
-                    book={{ bookID: item["bookID"], title: item["title"], genre: item["genre"], 
-                  authors: item["authors"] }} >
+              <BookComponent key={item["bookID"]}
+                book={{
+                  bookID: item["bookID"], title: item["title"], genre: item["genre"],
+                  authors: item["authors"]
+                }} >
               </BookComponent>
-            </div>) : <></> }
-       </div>
-       
+            </div>) : <></>}
+      </div>
+
     </main>
   );
 }
